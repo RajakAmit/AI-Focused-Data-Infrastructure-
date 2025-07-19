@@ -8,7 +8,6 @@
 - **DuckDB** – In-process analytical DB
 - **FastAPI** – REST API for querying
 - **SentenceTransformers** – Embedding generation
-- **Langchain** – Optional, for RAG flow
 - **Docker + docker-compose** – For isolated deployment
 
 ---

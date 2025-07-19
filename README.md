@@ -46,3 +46,7 @@ python src/embedder.py
 
 # 3. Start API
 uvicorn src.api:app --reload
+
+
+
+Video Link:https://drive.google.com/file/d/1VWniYUu8FpIOc8taFPe1m7qUryyTinMD/view?usp=drive_link

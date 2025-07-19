@@ -1,0 +1,30 @@
+digraph "RAG Pipeline Architecture" {
+	graph [fontcolor="#2D3436" fontname="Sans-Serif" fontsize=15 label="RAG Pipeline Architecture" nodesep=0.60 pad=2.0 rankdir=LR ranksep=0.75 splines=ortho]
+	node [fixedsize=true fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 height=1.4 imagescale=true labelloc=b shape=box style=rounded width=1.4]
+	edge [color="#7B8894"]
+	fe72c264ab3542709818a9f1d8acd234 [label=User height=1.9 image="E:\Big data\venv\Lib\site-packages\resources/onprem/client\users.png" shape=none]
+	db7eb5972233434ca04d1aab5c869ae8 -> "11d18d1dba1f4b5f90d62cc8af836150" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"11d18d1dba1f4b5f90d62cc8af836150" -> af6f71a6e28c42e3ba850e56572b51c4 [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	af6f71a6e28c42e3ba850e56572b51c4 -> "4c41ee4bcc9245c2a593e7fe13ce67f7" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"4c41ee4bcc9245c2a593e7fe13ce67f7" -> "891b019e09cf4496be24659789e9914e" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	subgraph "cluster_ETL Pipeline" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="ETL Pipeline" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		db7eb5972233434ca04d1aab5c869ae8 [label=Airflow height=1.9 image="./airflow.png" shape=none]
+		"11d18d1dba1f4b5f90d62cc8af836150" [label=Scraper height=1.9 image="E:\Big data\venv\Lib\site-packages\resources/programming/language\python.png" shape=none]
+		"4c41ee4bcc9245c2a593e7fe13ce67f7" [label="DuckDB + Delta" height=1.9 image="E:\Big data\venv\Lib\site-packages\resources/onprem/database\mongodb.png" shape=none]
+		af6f71a6e28c42e3ba850e56572b51c4 [label="MinIO raw/" height=1.9 image="./minio.png" shape=none]
+		"891b019e09cf4496be24659789e9914e" [label="MinIO gold/" height=1.9 image="./minio.png" shape=none]
+	}
+	fe72c264ab3542709818a9f1d8acd234 -> ee6d9356afc4401bbdaa8acda942f25e [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	ee6d9356afc4401bbdaa8acda942f25e -> "9e1cf9b713944c1f9bd727ce7ef41b3c" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	ee6d9356afc4401bbdaa8acda942f25e -> "842be01e5c2245dab38e854a629779a0" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	"842be01e5c2245dab38e854a629779a0" -> "891b019e09cf4496be24659789e9914e" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+	subgraph "cluster_RAG API" {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label="RAG API" labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		ee6d9356afc4401bbdaa8acda942f25e [label=FastAPI height=1.9 image="E:\Big data\venv\Lib\site-packages\resources/programming/language\python.png" shape=none]
+		"9e1cf9b713944c1f9bd727ce7ef41b3c" [label=Embedder height=1.9 image="E:\Big data\venv\Lib\site-packages\resources/programming/language\python.png" shape=none]
+		"842be01e5c2245dab38e854a629779a0" [label="QA Pipeline" height=1.9 image="E:\Big data\venv\Lib\site-packages\resources/programming/language\python.png" shape=none]
+	}
+	"3145d0e18ae44381843943faca03c7cd" [label=Monitoring height=1.9 image="E:\Big data\venv\Lib\site-packages\resources/onprem/monitoring\grafana.png" shape=none]
+	db7eb5972233434ca04d1aab5c869ae8 -> "3145d0e18ae44381843943faca03c7cd" [dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13]
+}
